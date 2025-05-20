@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String task = "No Task";
   TextEditingController textEditingController = TextEditingController();
+  List<String> tasks = [];
 
   @override
   Widget build(BuildContext context) {
@@ -51,28 +52,36 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () {
                     setState(() {
                       task = textEditingController.text;
+                      tasks.add(task);
+                      textEditingController.clear();
                     });
                   },
                   child: Text("click"),
                 ),
               ],
             ),
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(task),
+          
+          Flexible(
+            child: ListView.builder(itemCount: tasks.length,itemBuilder: (context, index){
+              return Row(
+                 children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(tasks[index]),
+                  ),
                 ),
-              ),
-              MaterialButton(onPressed: (){},
-              child: Icon(Icons.delete, color: Colors.red,),
-              )
-            ],
-          ),
-          ListView.builder(itemBuilder: (context, index){
-            return 
-          })
+                MaterialButton(onPressed: (){
+                  setState(() {
+                    tasks.remove(tasks[index]);
+                  });
+                },
+                child: Icon(Icons.delete, color: Colors.red,),
+                )
+              ],
+            );
+            }),
+          )
 
           ],
         ),
