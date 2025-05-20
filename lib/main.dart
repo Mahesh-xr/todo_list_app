@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String task = "No Task";
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class _MyAppState extends State<MyApp> {
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
+                controller: textEditingController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter a Task"
@@ -37,8 +39,7 @@ class _MyAppState extends State<MyApp> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             onPressed: (){
               setState(() {
-                task = "changed";
-                print(task);
+                task = textEditingController.text;
               });
             },
             child: Text("click"),),
