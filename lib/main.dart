@@ -12,8 +12,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String task = "No Task";
+
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -27,7 +30,19 @@ class _MyAppState extends State<MyApp> {
                   hintText: "Enter a Task"
                 ),
               ),
-            )
+            ),
+            MaterialButton(
+            color: Colors.white,
+            height: 50,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            onPressed: (){
+              setState(() {
+                task = "changed";
+                print(task);
+              });
+            },
+            child: Text("click"),),
+            Text(task)
           ],
         ),
       ),
