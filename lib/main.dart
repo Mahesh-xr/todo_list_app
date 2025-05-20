@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
                       textEditingController.clear();
                     });
                   },
-                  child: Text("click"),
+                  child: Text("add"),
                 ),
               ],
             ),
